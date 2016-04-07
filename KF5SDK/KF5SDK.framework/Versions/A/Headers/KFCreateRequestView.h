@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 @interface KFCreateRequestView : UIScrollView<UIAppearance>
+
+@property (nonatomic, strong) UITextView *textView;
+
+@property (nonatomic, weak) UIButton *attBtn;
 
 /**
  * placeholder的颜色

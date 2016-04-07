@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "KFDispatcher.h"
 
+#import "KFTicketListViewController.h"
+#import "KFRequestViewController.h"
+
 @interface KFRequests : NSObject
 
 /**
  *  工单列表的显示方式
  */
-@property (nonatomic, assign) BOOL isPresentForTicketList;
+@property (nonatomic, assign) BOOL isPresentForTicketList __deprecated_msg("该变量将会被废除");
 
 /**
  *  工单列表控制器rightBarButtonItem的显示方式
@@ -28,8 +31,6 @@
  *  工单列表控制器rightBarButtonItem的标题名称
  */
 @property (nonatomic, strong) NSString *createRequestBarTitle;
-
-
 /**
  *  工单详情控制器rightBarButtonItem的显示方式,点击应进入显示详细信息控制器
  */
@@ -45,7 +46,15 @@
 /**
  *  是否在工单内容视图的rightNavBar显示详细信息按钮，默认显示
  */
-@property (nonatomic, assign) BOOL isShowDetailMessage;
+@property (nonatomic, assign) BOOL isShowDetailMessage __deprecated_msg("该变量将会被废除,替换为detailMessageBarType = KFNavBarUITypeNone");
+/**
+ *  工单自定义字段字典，如@{@"field_123":@"内容"}],如果不为空,则在每次调用创建工单视图控制器时,都会自动加上,
+ */
+@property (nonatomic, strong) NSDictionary *fieldDict;
+/**
+ *  当创建工单控制器视图出现时,是否直接显示键盘,默认为NO
+ */
+@property (nonatomic, assign) BOOL isShowKeyBoardWhenRequestViewAppear;
 
 /**
  *  初始化方法
@@ -59,7 +68,7 @@
  *
  *  @param navController 当前的navController
  */
-+ (void) presentRequestCreationWithNavController:(UINavigationController*)navController;
++ (KFRequestViewController *) presentRequestCreationWithNavController:(UINavigationController*)navController;
 
 /**
  *  present创建工单视图控制器
@@ -68,7 +77,7 @@
  *  @param success       网络请求成功时返回
  *  @param error         网络请求失败时返回
  */
-+ (void) presentRequestCreationWithNavController:(UINavigationController*)navController
++ (KFRequestViewController *) presentRequestCreationWithNavController:(UINavigationController*)navController
                                      withSuccess:(KFAPISuccess)success
                                         andError:(KFAPIError)error;
 /**
@@ -79,7 +88,7 @@
  *  @param success       网络请求成功时返回
  *  @param error         网络请求失败时返回
  */
-+ (void) presentRequestCreationWithNavController:(UINavigationController *)navController fieldDict:(NSDictionary *)fieldDict success:(KFAPISuccess)success
++ (KFRequestViewController *) presentRequestCreationWithNavController:(UINavigationController *)navController fieldDict:(NSDictionary *)fieldDict success:(KFAPISuccess)success
                                         andError:(KFAPIError)error;
 
 /**
@@ -87,7 +96,7 @@
  *
  *  @param navController 当前的navController
  */
-+ (void) showRequestListWithNavController:(UINavigationController *)navController;
++ (KFTicketListViewController *) showRequestListWithNavController:(UINavigationController *)navController;
 
 /**
  *  push工单列表视图控制器(带actionBlock)
@@ -96,14 +105,14 @@
  *  @param actionBlock   点击工单列表navBar右侧按钮的事件处理，
  *                          为NULL直接跳转到创建工单控制器（不带工单自定义参数）
  */
-+ (void) showRequestListWithNavController:(UINavigationController *)navController rightBarButtonActionBlock:(KFBarButtonActionBlock)actionBlock;
++ (KFTicketListViewController *) showRequestListWithNavController:(UINavigationController *)navController rightBarButtonActionBlock:(KFBarButtonActionBlock)actionBlock;
 
 /**
  *  present工单列表视图控制器
  *
  *  @param navController 当前的navController
  */
-+ (void) presentRequestListWithNavController:(UINavigationController *)navController;
++ (KFTicketListViewController *) presentRequestListWithNavController:(UINavigationController *)navController;
 /**
  *  present工单列表视图控制器(带actionBlock)
  *
@@ -111,7 +120,7 @@
  *  @param actionBlock   点击工单列表navBar右侧按钮的事件处理，
  *                          为NULL直接跳转到创建工单控制器（不带工单自定义参数）
  */
-+ (void) presentRequestListWithNavController:(UINavigationController *)navController rightBarButtonActionBlock:(KFBarButtonActionBlock)actionBlock;
++ (KFTicketListViewController *) presentRequestListWithNavController:(UINavigationController *)navController rightBarButtonActionBlock:(KFBarButtonActionBlock)actionBlock;
 
 
 #pragma mark 创建工单控制器导航栏初始化

@@ -17,7 +17,7 @@
 
 @class KFChatManager;
 
-@protocol KFChatManagerDeleagte <NSObject>
+@protocol KFChatManagerDelegate <NSObject>
 
 @optional
 /**
@@ -25,15 +25,22 @@
  *
  *  @param chatManager  聊天管理对象
  *  @param chatMessages 聊天消息数组
+ *
  */
 - (void)chatManager:(KFChatManager *)chatManager receiveMessages:(NSArray *)chatMessages;
 /**
  *  客服被转接通知
  *
  *  @param chatManager 聊天管理对象
- *  @param agent       客服,当客服为空时,说明会话已结束
+ *  @param agent       客服,当客服为空时,说明对话已结束
  */
 - (void)chatManager:(KFChatManager *)chatManager transferAgent:(KFAgent *)agent;
+/**
+ *  客服发起满意度评价
+ *
+ *  @param chatManager 聊天管理对象
+ */
+- (void)chatManagerRating:(KFChatManager *)chatManager;
 /**
  *  录音振幅变化
  *
@@ -53,8 +60,18 @@
 @end
 
 @interface KFChatManager : NSObject
-
-@property (nonatomic, weak) id<KFChatManagerDeleagte> deleagte;
+/**
+ *  添加代理
+ */
+- (void)addDelegate:(id<KFChatManagerDelegate>)delegate;
+/**
+ *  删除代理
+ */
+- (void)removeDelegate:(id<KFChatManagerDelegate>)delegate;
+/**
+ *  删除所有代理
+ */
+- (void)removeAllDelegates;
 /**
  *  请求超时时间,默认15秒
  */
@@ -71,9 +88,16 @@
 /**
  *  socket是否连接成功
  */
-@property (nonatomic, assign) BOOL isContentSuccess;
-
+@property (nonatomic, assign) BOOL isConnectSuccess;
+/**
+ *  用户自定义信息,需要在连接服务器之前定义(格式@[@{@"name":@"性别",@"value":@"男"},@{@"name":@"爱好",@"value":@"篮球"}])
+ */
+@property (nonatomic, strong) NSArray *customFields;
+/**
+ *  单例
+ */
 + (instancetype)sharedChatManager;
+
 /**
  *  发送消息
  *
@@ -94,8 +118,9 @@
  *  上线
  */
 - (void)connectWithUser:(KFUser *)user completion:(KFChatCompletion)completion;
+
 /**
- *  设置用户离线,KF5服务器回向推送url发送推送
+ *  设置用户离线,KF5服务器回向推送url发送推送,建议在应用进入后台时调用
  */
 - (void)setUserOffline;
 
@@ -105,6 +130,12 @@
  *  @param completion 成功或失败的回调
  */
 - (void)getAgentWithCompletion:(KFChatGetAgentCompletion)completion;
+/**
+ *  发送满意度
+ *
+ *  @param completion 成功或失败的回调
+ */
+- (void)sendRating:(BOOL)rating completion:(KFChatCompletion)completion;
 
 /**
  *  获取历史记录
@@ -120,11 +151,14 @@
  *  @param completion 成功或失败的回调
  */
 - (void)syncMessageWithCompletion:(KFChatGetHistoryCompletion)completion;
-
 /**
  *  开始录制音频
  */
 -(void)startVoiceRecord;
+/**
+ *  取消录制音频
+ */
+- (void)cancleVoiveRecord;
 /**
  *  停止录制音频
  */
@@ -147,5 +181,12 @@
  *  @return 时长
  */
 + (double)voiceDurationWithMessage:(KFMessage *)message;
+/**
+ *  判断是否是正在播放的文件
+ *
+ *  @param message 必须是语音消息
+ *
+ */
+- (BOOL)isPlayingWithVoiceMessage:(KFMessage *)voiceMessage;
 
 @end

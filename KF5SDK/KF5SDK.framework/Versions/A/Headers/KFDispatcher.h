@@ -18,7 +18,8 @@
  */
 typedef enum{
     KFNavBarUITypeLocalizedLabel = 0,   //NavBarButton设置为文字
-    KFNavBarUITypeImage                 //NavBarButton设置为图片
+    KFNavBarUITypeImage,                //NavBarButton设置为图片
+    KFNavBarUITypeNone                  //NavBarButton不显示
 }KFNavBarUIType;
 
 /**
@@ -81,6 +82,11 @@ typedef void  (^KFAPIUploadProgress)(NSProgress * progress);
  *  点击BarButton的回调
  */
 typedef void (^KFBarButtonActionBlock)();
+
+/**
+ *  alert点击确定的回调
+ */
+typedef void (^KFAlertActionBlock)();
 
 
 typedef void (^KFChatMessageCompletion)(KFError *error,KFMessage *message);
