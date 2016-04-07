@@ -24,8 +24,6 @@ s.social_media_url = "http://www.kf5.com"
 s.platform     = :ios, '7.0'
 s.requires_arc = true
 
-s.source_files = 'MAPlayer/*.{h,m}'
-s.public_header_files = 'MAPlayer/*.h'
 s.frameworks = 'Accelerate', 'JavaScriptCore', 'CoreTelephony','SystemConfiguration', 'AudioToolbox', 'MobileCoreServices','AssetsLibrary','AVFoundation','ImageIO','AudioToolbox'
 s.libraries = 'sqlite3',
 s.vendored_frameworks = 'KF5SDK/KF5SDK.framework'
