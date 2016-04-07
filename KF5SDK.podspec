@@ -18,7 +18,7 @@ DESC
 s.homepage         = "https://github.com/fengyunjue/KF5SDK"
 s.license          = 'MIT'
 s.author           = { "ma772528138" => "ma772528138@qq.com" }
-s.source           = { :git => "KF5SDK", :tag => s.version.to_s }
+s.source           = { :git => "https://github.com/fengyunjue/KF5SDK-iOS.git", :tag => s.version.to_s }
 s.social_media_url = "http://www.kf5.com"
 
 s.platform     = :ios, '7.0'
