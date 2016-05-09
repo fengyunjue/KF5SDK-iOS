@@ -7,7 +7,7 @@
 //
 #import "KF5BaseTableViewCell.h"
 
-@interface KFRequestCommentTableCell : KF5BaseTableViewCell
+@interface KFRequestCommentTableCell : KF5BaseTableViewCell<UIAppearance>
 
 /**
  *  头像
@@ -63,6 +63,10 @@
  * contentLabel的颜色
  */
 @property (nonatomic, strong) UIColor *contentColor;
+/**
+ * contentLabel链接的颜色
+ */
+@property (nonatomic, strong) UIColor *urlColor;
 
 /**
  * timeLabel的字体

@@ -15,11 +15,6 @@
 @interface KFRequests : NSObject
 
 /**
- *  工单列表的显示方式
- */
-@property (nonatomic, assign) BOOL isPresentForTicketList __deprecated_msg("该变量将会被废除");
-
-/**
  *  工单列表控制器rightBarButtonItem的显示方式
  */
 @property (nonatomic, assign) KFNavBarUIType createRequestBarType;

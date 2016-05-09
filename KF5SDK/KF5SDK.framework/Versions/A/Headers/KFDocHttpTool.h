@@ -55,7 +55,7 @@
 - (NSURLSessionDataTask *)getDocumentWithPost_id:(NSString *)post_id;
 
 /**
- *  搜索工单
+ *  搜索文档
  *
  *  @param queryStr 搜索关键字
  */
@@ -103,7 +103,7 @@
 + (NSURLSessionDataTask *)getDocumentWithPost_id:(NSString *)post_id successBlock:(KFAPISuccess)successBlock failureBlock:(KFAPIError)failureBlock;
 
 /**
- *  搜索工单
+ *  搜索文档
  *
  *  @param queryStr     搜索关键字
  *  @param successBlock 获取成功的回调

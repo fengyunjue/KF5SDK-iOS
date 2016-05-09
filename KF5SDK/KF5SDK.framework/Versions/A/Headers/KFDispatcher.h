@@ -14,6 +14,15 @@
 @interface KFDispatcher : NSObject
 
 /**
+ *  用户信息验证方式
+ */
+typedef enum{
+    KFVerifyUserTypeDefault = 0,    // 使用默认,以邮箱为验证方式
+    KFVerifyUserTypeEmail,          // 以邮箱为验证方式
+    KFVerifyUserTypePhone           // 以手机号为验证方式
+}KFVerifyUserType;
+
+/**
  *  NavBarButton的显示方式
  */
 typedef enum{
@@ -67,7 +76,7 @@ typedef void (^KFAPISuccess) (NSDictionary *result);
 typedef void (^KFAPIDownloadVoiceSuccess) (KFMessage *message);
 
 
-typedef void (^KFInitSuccess) (KFUser *user);
+typedef void (^KFInitSuccess) (KFUser *user,NSString *message);
 
 /**
  * API error block
