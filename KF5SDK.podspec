@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors     = {"ma772528138"=>"ma772528138@qq.com"}
   s.homepage    = 'https://github.com/KF5/KF5SDK-iOS'
 
-  s.screenshots = ["www.kf5.com/ios", "www.kf5.com"]
+s.screenshots = ["https://www.kf5.com", "http://developer.kf5.com/ios"]
   s.source      = { :git => "https://github.com/fengyunjue/KF5SDK-iOS.git", :tag => s.version.to_s }
   s.frameworks  = ["Foundation", "UIKit", "MapKit", "AssetsLibrary", "SystemConfiguration", "AVFoundation", "CoreMotion", "ImageIO", "CoreGraphics", "MobileCoreServices", "Security", "AudioToolbox"]
   s.libraries   = 'sqlite3'
