@@ -5,9 +5,9 @@ Pod::Spec.new do |s|
   s.description = '逸创云客服官方SDK，帮助开发者快速完成开发，提供给开发者创建工单、查看工单列表、回复工单、查看和搜索知识库文档、消息通知推送、即时IM等功能。目前支持iOS7.0及以上系统。详细信息请见官网www.kf5.com(为您留住每一个客户,企业信赖的全渠道云客服平台)。'
   s.license     = 'MIT'
   s.authors     = {"ma772528138"=>"ma772528138@qq.com"}
-  s.homepage    = 'https://github.com/KF5/KF5SDK-iOS'
+  s.homepage    = 'http://www.kf5.com'
+  s.documentation_url = 'http://developer.kf5.com/ios'
 
-s.screenshots = ["https://www.kf5.com", "http://developer.kf5.com/ios"]
   s.source      = { :git => "https://github.com/fengyunjue/KF5SDK-iOS.git", :tag => s.version.to_s }
   s.frameworks  = ["Foundation", "UIKit", "MapKit", "AssetsLibrary", "SystemConfiguration", "AVFoundation", "CoreMotion", "ImageIO", "CoreGraphics", "MobileCoreServices", "Security", "AudioToolbox"]
   s.libraries   = 'sqlite3'
